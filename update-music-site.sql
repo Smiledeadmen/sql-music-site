@@ -37,12 +37,12 @@ INSERT INTO performensgenres  (genres_id, performens_id) VALUES
     (1,6);
     
 INSERT INTO albums (title, year) VALUES
-	('Dangerous',1991),
+	('Dangerous',2020),
 	('Backstreet Boys',1997),
-	('Born in the U.S.A.',1991),
+	('Born in the U.S.A.',2019),
 	('Goodbye Yellow Brick Road',2018),
 	('Titanic',1997),
-	('Daydream',1995),
+	('Daydream',2020),
 	('Whitney Houston',1985),
 	('Believe',2018),
 	('Ray of Light',1998),
@@ -58,6 +58,8 @@ INSERT INTO performensalbums  (albums_id, performens_id) VALUES
 	(7,4),
 	(8,6),
 	(9,5),
+	(1,11),
+	(2,12),
 	(10,7);
 
 INSERT INTO tracks  (albums_id, title, duration) VALUES
@@ -80,8 +82,14 @@ INSERT INTO tracks  (albums_id, title, duration) VALUES
 	(4,'Love Of A Dream',194),
 	(3,'I Know He Wrote A Song About You',193),
 	(2,'Troubles Of My Friends',196),
-	(1,'Thrill For Tonight',198),
+	(4,'She Said You Can Dance',198),
+	(5,'Thrill For Tonight',200),
+	(8,'Endless Soul',210),
+	(1,'Imagine Your Fire',199),
+	(9,'Warriors For The Gang',225),
+	(2,'Delighted Kiss',190),
 	(5,'Notes Junky',200);
+
 	
 INSERT INTO compilations (title, year) VALUES
 	('Drink For Her Love',2018),
