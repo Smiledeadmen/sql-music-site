@@ -15,10 +15,13 @@ left join tracks t ON a.albums_id = t.albums_id
 GROUP BY a.albums_id;
 
 --все исполнители, которые не выпустили альбомы в 2020 году;
-select name, year  from performens p 
-join performensalbums pa on p.performens_id = pa.performens_id 
-join albums a on pa.albums_id = a.albums_id 
-where year != 2020
+select name from performens p2 
+EXCEPT 
+	select name from performens p
+	join performensalbums pa on p.performens_id = pa.performens_id
+	join albums a on pa.albums_id  = a.albums_id
+	where year = 2020;
+
 
 --названия сборников, в которых присутствует конкретный исполнитель (выберите сами);
 select c.title, name from compilations c 
@@ -30,7 +33,7 @@ join performens p2 on p.performens_id = p2.performens_id
 where name = 'Serebro'
 
 
---название альбомов, в которых присутствуют исполнители более 1 жанра;!!!!!!!!!!!!!!!!!!!!!
+--название альбомов, в которых присутствуют исполнители более 1 жанра;
 select a.title, count(*) from albums a 
 join performensalbums p on a.albums_id = p.albums_id 
 join performens p2  on p.performens_id = p2.performens_id 
@@ -52,11 +55,11 @@ select name, t.title, duration from performens p
 join performensalbums p2 on p.performens_id = p2.performens_id 
 join albums a on p2.albums_id = a.albums_id 
 join tracks t on a.albums_id = t.albums_id
-where duration = (select min(duration) from tracks)
-group by name, t.title, duration;
+where duration = (select min(duration) from tracks);
 
 --название альбомов, содержащих наименьшее количество треков.
 select a.title, count(*)   from albums a 
 join tracks t on a.albums_id = t.albums_id 
 group by a.title
-having count(*) < 2 ;
+having count(*) = (select count(*) from albums a 
+join tracks t on a.albums_id = t.albums_id group by a.title order by count(*) limit 1) ;
